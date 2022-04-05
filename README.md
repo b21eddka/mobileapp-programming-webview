@@ -13,24 +13,72 @@ _Du kan ta bort all text som finns sedan tidigare_.
 - Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
 - I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
 
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+Ändrade namnet på min app till mitt namn "Eddin". Aktiverade tillgång till internet. Ersatte TextView elementet med WebView i content_main.xml samt gav den ett id: my_webview.
+Skapade en privat medlemsvariabel "myWebView" av typen "WebView" och instansierade den i "onCreate" metoden. Med hjälp av id, hittas/ nås "WebView".
+Aktivera användningen av Javascript i WebViewClient. Gjorde en assets fil "Index.html" samt skapade två headers för "InternalWebPage".
+Implementerar metoderna "showInternalWebPage" och "showExternalWebPage". Kallar metoderna "showExternalWebPage" och "showInternalWebPage" i respektive if-sats.
+
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+<string name="app_name">Eddin</string>
+
+```
+...
+ <uses-permission android:name="android.permission.INTERNET" />
+...
+...
+<WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/my_webview"/>
+...
+...
+ private WebView myWebView;
+
+    public void showExternalWebPage(){
+        // TODO: Add your code for showing external web page here
+        myWebView.loadUrl("https://google.com");
     }
-}
-```
 
+    public void showInternalWebPage(){
+        // TODO: Add your code for showing internal web page here
+        myWebView.loadUrl("file:///android_asset/index.html");
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        myWebView = findViewById(R.id.my_webview);
+        WebViewClient client = new WebViewClient();
+        myWebView.setWebViewClient(client);
+        myWebView.getSettings().setJavaScriptEnabled(true);
+...
+...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Test</title>
+</head>
+<body>
+<h1>
+    Eddin är en riktig cooling
+</h1>
+<h1>
+    Jag sa vad jag sa
+</h1>
+</body>
+</html>
+...
 Bilder läggs i samma mapp som markdown-filen.
 
 ![](android.png)
