@@ -10,10 +10,12 @@ Implementerar metoderna "showInternalWebPage" och "showExternalWebPage". Kallar 
 <string name="app_name">Eddin</string>
 
 ```
-...
+
+```
  <uses-permission android:name="android.permission.INTERNET" />
-...
-...
+```
+
+```
 <WebView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,8 +25,9 @@ Implementerar metoderna "showInternalWebPage" och "showExternalWebPage". Kallar 
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/my_webview"/>
-...
-...
+```
+
+```
  private WebView myWebView;
 
     public void showExternalWebPage(){
@@ -48,8 +51,9 @@ Implementerar metoderna "showInternalWebPage" och "showExternalWebPage". Kallar 
         WebViewClient client = new WebViewClient();
         myWebView.setWebViewClient(client);
         myWebView.getSettings().setJavaScriptEnabled(true);
-...
-...
+```
+
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,8 +69,8 @@ Implementerar metoderna "showInternalWebPage" och "showExternalWebPage". Kallar 
 </h1>
 </body>
 </html>
-...
+```
 
 
-![](internal.png)
-![](external.png)
+![](Internal.png)
+![](External.png)
